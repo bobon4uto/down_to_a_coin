@@ -116,7 +116,7 @@ void drawStore(store s, Texture2D textureStore, Texture2D textureStar, Texture2D
 	}
 }
 
-size_t calcMoney(Rectangle* moneyBox,store stores[STORE_NUMBER]) {
+size_t calcMoney(store stores[STORE_NUMBER]) {
 	size_t money = 0;
 	for (size_t i=0;i<STORE_NUMBER;++i)
 	{
@@ -298,7 +298,6 @@ int main(void)
 
     Vector2 position = { (float)(0), (float)(0) };
 		Vector2 mousePosition = { -100.0f, -100.0f };
-    Color ballColor = DARKBLUE;
 		Rectangle cursorBox ={ 30, 30, 10, 10 };
     SetTargetFPS(60);
     bool collisions[] = {false,false,false};
@@ -340,7 +339,7 @@ int main(void)
 				cutscene = NO_CUTSCENE;
 			}
 			else if (cutscene == NO_CUTSCENE) {
-				money = calcMoney(&moneyBox,stores);
+				money = calcMoney(stores);
 				if (money >= 90) {
 					cutscene=BUISNESS_CUTSCENE;
 				} 
@@ -349,7 +348,6 @@ int main(void)
 				} 
 
 				jsonstringifyorsmthing(money_str, money);
-		Rectangle moneyBox = { SCREEN_WIDTH-50, 40, 50, SCREEN_HEIGHT-250 };
 				moneyBox.y = (40 + (SCREEN_HEIGHT-250)) - (money * (SCREEN_HEIGHT-250)/100);
 				moneyBox.height = (money * (SCREEN_HEIGHT-250)/100);
 

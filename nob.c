@@ -26,7 +26,8 @@ Cmd cmd = {0};
 int main (int argc, char **argv)
 {
   NOB_GO_REBUILD_URSELF(argc, argv);
-  int target = GAME_TARGET_LINUX;
+ if (!nob_mkdir_if_not_exists(BUILD_FOLDER)) return 1;
+	int target = GAME_TARGET_LINUX;
 	if (argc > 1) { 
 		target = argv[1][0]; ///LMAO
 		}
@@ -55,6 +56,7 @@ bool build_linux() {
   return 0;	
 }
 bool build_web() { //idk what im doing btw
+  if (!nob_mkdir_if_not_exists(BUILD_FOLDER "web")) return 1;
 cmd_append(&cmd, "emcc");
 cc_output(&cmd, BUILD_FOLDER "web/index.html");
 cmd_append(&cmd, "src/main.c");
