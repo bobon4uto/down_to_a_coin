@@ -347,6 +347,9 @@ int main(void)
 	Image background = LoadImage("assets/background.png"); 
     Texture2D bg_texture = LoadTextureFromImage(background);  
     UnloadImage(background);   
+	Image cutscene_background = LoadImage("assets/cutscene_background.png"); 
+    Texture2D c_bg_texture = LoadTextureFromImage(cutscene_background);  
+    UnloadImage(cutscene_background);   
 	
     Image im_susmeter = LoadImage("assets/susmeter.png"); 
     Texture2D tex_susmeter = LoadTextureFromImage(im_susmeter);  
@@ -418,7 +421,7 @@ int main(void)
 		cutscene_frame intro_cutscene[] = 
 		{
 			{5,"Oh my god,\n I'm getting\na promotion to CEO???"},
-			{CH_BLACK_MOUSTAGE, "yes.\nAnd You seem very exited about it.\nDidn't you read my letter?\nOr do I have to\nexplain everything?"},
+			{CH_BLACK_MOUSTAGE, "yes.\nAnd You seem very\nexited about it.\nDidn't you read my letter?\nOr do I have to\nexplain everything?"},
 			{CH_WHITE, "Explain, please.\n\n\nI know everything already."},
 			{CH_BLACK_MOUSTAGE, "So our company is in a\nHuge debt.\nWe barely have\nhalf the money\nto pay it."},
 			{CH_WHITE, "Yes, I know, but\nI will do my best to-"},
@@ -451,10 +454,6 @@ cutscene_frame policeCutscene[] = {
 	{CH_WHITE_WB, "I need a lawyer."},
 	{CH_BLUE_POLICE, "You sure need one.\nBut you wont be getting\na lawyer with\nthis money youve\nbeen stealing from\nyour company."},
 	{CH_WHITE_WB, "BAD END:\nyou got arrested."}
-
-
-
-
 	};
 
 
@@ -566,7 +565,8 @@ cutscene_frame businessCutscene[] = {
 
             ClearBackground(RAYWHITE);
 
-            DrawTextureV(bg_texture, position, WHITE);
+            DrawTextureV(c_bg_texture, position, WHITE);
+            DrawText("CEO", 208, 208, 20, BROWN);
 						if (choose) {
 							DrawRectangleRec(yesBox, RED);
 							DrawRectangleRec(noBox, RED);
@@ -674,7 +674,8 @@ cutscene_frame businessCutscene[] = {
 
             ClearBackground(RAYWHITE);
 
-            DrawTextureV(bg_texture, position, WHITE);
+            DrawTextureV(c_bg_texture, position, WHITE);
+            DrawText("CEO", 208, 208, 20, BROWN);
 						DrawDialogue(policeCutscene,frame, tex_white,tex_black_moustage,tex_blue_police);
 
         EndDrawing();
@@ -693,7 +694,8 @@ cutscene_frame businessCutscene[] = {
 
             ClearBackground(RAYWHITE);
 
-            DrawTextureV(bg_texture, position, WHITE);
+            DrawTextureV(c_bg_texture, position, WHITE);
+            DrawText("BOSS", 200, 208, 20, BROWN);
 						DrawDialogue(bankruptCutscene,frame, tex_white,tex_black_moustage,tex_blue_police);
 
         EndDrawing();
@@ -710,7 +712,8 @@ cutscene_frame businessCutscene[] = {
 
             ClearBackground(RAYWHITE);
 
-            DrawTextureV(bg_texture, position, WHITE);
+            DrawTextureV(c_bg_texture , position, WHITE);
+            DrawText("CEO", 208, 208, 20, BROWN);
 						DrawDialogue(businessCutscene,frame, tex_white,tex_black_moustage,tex_blue_police);
 
         EndDrawing();
